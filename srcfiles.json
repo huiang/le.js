@@ -1,0 +1,8 @@
+[
+  "src/extend.js",
+  "src/core.js",
+  "src/game.js",
+  "src/timer.js",
+  "src/node.js",
+  "src/layer.js"
+]

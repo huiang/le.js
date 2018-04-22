@@ -1,0 +1,21 @@
+1. 关于node __update 中  add remove child 的问题
+	update 包括 timer，action
+	add的节点会update  
+	remove的node不会update
+
+	add后 setTimeout(0) run(ActionInstant) 会在当前帧才开始执行
+
+	draw 中并没有考虑这些，不要在draw中添加删除元素
+
+	__update的执行顺序
+	parent 先执行
+	child 的执行不保证按照zindex的顺序
+
+2. 由mouse keyboard 触发的事件对update的影响
+	在下一帧开始update
+
+3. 关于event trigger 中的bind unbind 问题
+	unbind bind 后的回调不会执行
+
+4. 不要将easy 用于Seq Spwan，因为无效
+	
