@@ -276,16 +276,18 @@ le.MoveBy = ActionInterval.extend({
 le.MoveTo = ActionInterval.extend({
 	init: function(duration, x, y) {
 		ActionIntervalInit.call(this, duration);
-		this.dx = x;
-		this.dy = y;
+		this.tx = x;
+		this.ty = y;
+		this.dx = 0;
+		this.dy = 0;
 	},
 
 	start: function(target) {
 		ActionIntervalStart.call(this, target);
 		this.x = target.x;
 		this.y = target.y;
-		this.dx = this.dx - this.x;
-		this.dy = this.dy - this.y;
+		this.dx = this.tx - this.x;
+		this.dy = this.ty - this.y;
 	},
 
 	step: function(percent) {
@@ -312,13 +314,14 @@ le.MoveXBy = ActionInterval.extend({
 le.MoveXTo = ActionInterval.extend({
 	init: function(duration, x) {
 		ActionIntervalInit.call(this, duration);
-		this.dx = x;
+		this.tx = x;
+		this.dx = 0;
 	},
 
 	start: function(target) {
 		ActionIntervalStart.call(this, target);
 		this.x = target.x;
-		this.dx = this.dx - this.x;
+		this.dx = this.tx - this.x;
 	},
 
 	step: function(percent) {
@@ -362,16 +365,18 @@ le.MoveYTo = ActionInterval.extend({
 le.ScaleBy = ActionInterval.extend({
 	init: function(duration, scaleX, scaleY) {
 		ActionIntervalInit.call(this, duration);
-		this.dsx = scaleX;
-		this.dsy = typeof scaleY == 'undefined' ? scaleX : scaleY;
+		this.ssx = scaleX;
+		this.ssy = typeof scaleY == 'undefined' ? scaleX : scaleY;
+		this.dsx = 0;
+		this.dsy = 0;
 	},
 
 	start: function(target) {
 		ActionIntervalStart.call(this, target);
 		this.sx = target.scaleX;
 		this.sy = target.scaleY;
-		this.dsx = this.dsx * this.sx - this.sx;
-		this.dsy = this.dsy * this.sy - this.sy;
+		this.dsx = this.ssx * this.sx - this.sx;
+		this.dsy = this.ssy * this.sy - this.sy;
 	},
 
 	step: function(percent) {
@@ -382,16 +387,18 @@ le.ScaleBy = ActionInterval.extend({
 le.ScaleTo = ActionInterval.extend({
 	init: function(duration, scaleX, scaleY) {
 		ActionIntervalInit.call(this, duration);
-		this.dsx = scaleX;
-		this.dsy = typeof scaleY == 'undefined' ? scaleX : scaleY;
+		this.tsx = scaleX;
+		this.tsy = typeof scaleY == 'undefined' ? scaleX : scaleY;
+		this.dsx = 0;
+		this.dsy = 0;
 	},
 
 	start: function(target) {
 		ActionIntervalStart.call(this, target);
 		this.sx = target.scaleX;
 		this.sy = target.scaleY;
-		this.dsx = this.dsx - this.sx;
-		this.dsy = this.dsy - this.sy;
+		this.dsx = this.tsx - this.sx;
+		this.dsy = this.tsy - this.sy;
 	},
 
 	step: function(percent) {
@@ -402,13 +409,14 @@ le.ScaleTo = ActionInterval.extend({
 le.RotateTo = ActionInterval.extend({
 	init: function(duration, angle) {
 		ActionIntervalInit.call(this, duration);
-		this.dag = angle;
+		this.tag = angle;
+		this.dag = 0;
 	},
 
 	start: function(target) {
 		ActionIntervalStart.call(this, target);
 		this.ag = target.rotation % 360;
-		this.dag = this.dag - this.ag;
+		this.dag = this.tag - this.ag;
 		if (this.dag > 180)
 			this.dag -= 360;
 		else if (this.dag < -180)

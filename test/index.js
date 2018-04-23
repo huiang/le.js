@@ -66,13 +66,8 @@ index.FlashScene = le.Scene.extend({
 
 		var self = this;
 		self.incTask();
-		le.loader.load({"type":"image","src":"res/texture/cr0.png", "name":"cr0.png"}, function(){
-			le.spriteFrameCache.add(le.loader.getImage("cr0.png"), frameCrJsonZ);
-			self.decTask();
-		});
-		self.incTask();
-		le.loader.load({"type":"image","src":"res/texture/cr1.png", "name":"cr1.png"}, function(){
-			le.spriteFrameCache.add(le.loader.getImage("cr1.png"), frameCrJsonO);
+		le.loader.load({"type":"image","src":"res/texture/test_new.png", "name":"test_new.png"}, function(){
+			le.spriteFrameCache.add(le.loader.getImage("test_new.png"), frameTextJson);
 			self.decTask();
 		});
 
@@ -93,33 +88,96 @@ index.FlashScene = le.Scene.extend({
 
 index.HomeScene = le.Scene.extend({
 	willEnter: function() {
+
+		var height = this.director.winSize.h;
+
+		var bg = new le.Sprite("hbg_bg.png")
+		.pos(0, 0)
+		.anchor(0, 0)
+		.scale(0.7)
+		.clip(true)
+		.appendTo(this.root);
+		
 		var newDirector = new le.Label('loadSmallDirector', game.fonts.blue).pos(200, 80).appendTo(this.root);
 		newDirector.bind("click", function(){
 			index.loadSmall();
 		});
 
-		var craft = new le.Sprite("hbg_craft.png")
-		.pos(400, 100)
-		.scale(0.15)
-		.appendTo(this.root);
-
-		craft.setOpacity(0).runAction(new le.FadeTo(600, 1));
-
 		var list = [
-			'LabelTest','ActionTest','InputTest','VideoTest','TextureTest','TimerTest','EventTest','ClipTest', 'FpsTest', 'DebugTest', 'MessageTest', 'ImageTest', 'LiveTest'
+		// 'TextureTest'
+			'LabelTest','ActionTest','ClipTest', 'FpsTest', 'ImageTest', 'LiveTest'
 		];
+
+		// var list = [
+		// // 'TextureTest'
+		// 	'LabelTest','ActionTest','InputTest','VideoTest','TimerTest','EventTest','ClipTest', 'FpsTest', 'DebugTest', 'MessageTest', 'ImageTest', 'LiveTest'
+		// ];
 		var self = this;
 		for (var i in list) {		
 			var temp = list[i];
-			var x = parseInt(i / 6);
-			var y = i % 6;
+			var x = parseInt(i / 7);
+			var y = i % 7;
 			(function(temp, x, y){
-				new le.Label(temp, game.fonts.main).pos(100 + x * 150, 200 + y * 50).setLineHeight(30).appendTo(self.root).bind("click", function(){
+				new le.Label(temp, game.fonts.main).pos(480 + x * 150, 150 + y * 50).setLineHeight(30).appendTo(self.root).bind("click", function(){
 					var scene = new game[temp + 'Scene']();
 					self.director.startScene(scene);
 				});
 			})(temp, x, y);
 		}
+
+		var createOne = function(delay) {
+			var leaf = new le.Sprite("hbg_leaf_"+Math.floor(Math.rand(1, 4.99999))+".png");
+			var con = new le.Node();
+			con.addChild(leaf);
+
+			bg.addChild(con);
+
+			var x = Math.rand(300, 1500);
+			var y = -200;
+			var t = Math.rand(3, 8) * 1000;
+			var dx = Math.rand(600 * height/1080, 900 * height/1080);
+			var dy = height + 400;
+
+			con.setTimeout(function(dt){
+				con.runAction(new le.Seq(
+					new le.MoveTo(t, x - dx, y + dy), new le.RemoveSelf()
+					));
+				var adt = Math.rand(1.6 * 1000, 3.4 * 1000);
+				var sdt = adt / 8;
+				con.runAction(new le.RepeatForever(new le.RotateBy(adt, 360)));
+				leaf.runAction(new le.RepeatForever(
+					new le.Seq(
+						new le.ScaleTo(sdt, 0.2, 1),
+						new le.Callfunc(function(){
+							leaf.scale(-0.2, 1);
+						}),
+						new le.ScaleTo(sdt, -1, 1),
+						new le.ScaleTo(sdt, -0.2, 1),
+						new le.Callfunc(function(){
+							leaf.scale(0.2, 1);
+						}),
+						new le.ScaleTo(sdt, 1, 1)
+						)
+					));
+			}, delay);
+
+            con.setRotation(Math.rand(-50.0, 50.0));
+            con.scale(Math.rand(0.8, 1.0));
+            con.pos(x, y);
+		};
+		bg.setInterval(function(dt) {
+            for (var i = 0, max = Math.rand(100, 160); i < max; i++) {
+                createOne(Math.rand(0.0, 9000));
+            }
+        }, 10000);
+        for (var i = 0, max = Math.rand(100, 160); i < max; i++) {
+            createOne(Math.rand(0.0, 9000));
+        }
+        var clicka = new le.Node().size(300, 400).pos(150, 220).showBorder().bind('click', function(){  
+	        for (var i = 0, max = Math.rand(16, 24); i < max; i++) {
+	            createOne(Math.rand(0.0, 900));
+	        }
+        }).appendTo(bg);
 	}
 });
 

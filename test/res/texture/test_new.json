@@ -1,0 +1,76 @@
+var frameTextJson = {"frames": {
+
+"hbg_bg.png":
+{
+	"frame": {"x":1,"y":1,"w":1138,"h":862},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1138,"h":862},
+	"sourceSize": {"w":1138,"h":862}
+},
+"hbg_leaf_0.png":
+{
+	"frame": {"x":1175,"y":174,"w":24,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":17},
+	"sourceSize": {"w":24,"h":17}
+},
+"hbg_leaf_1.png":
+{
+	"frame": {"x":1175,"y":155,"w":32,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":18},
+	"sourceSize": {"w":32,"h":18}
+},
+"hbg_leaf_2.png":
+{
+	"frame": {"x":1140,"y":155,"w":34,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":34,"h":30},
+	"sourceSize": {"w":34,"h":30}
+},
+"hbg_leaf_3.png":
+{
+	"frame": {"x":1140,"y":186,"w":23,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":23,"h":27},
+	"sourceSize": {"w":23,"h":27}
+},
+"hbg_leaf_4.png":
+{
+	"frame": {"x":1164,"y":192,"w":21,"h":28},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":21,"h":28},
+	"sourceSize": {"w":21,"h":28}
+},
+"m_clan_normal.png":
+{
+	"frame": {"x":1140,"y":78,"w":76,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":76},
+	"sourceSize": {"w":76,"h":76}
+},
+"m_clan_pressed.png":
+{
+	"frame": {"x":1140,"y":1,"w":76,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":76},
+	"sourceSize": {"w":76,"h":76}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "test_new.png",
+	"format": "RGBA8888",
+	"size": {"w":1217,"h":864},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:961a79387cb8e0ef3398e7e6d85e76bb:1/1$"
+}
+}
